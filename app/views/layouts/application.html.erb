@@ -4,8 +4,14 @@
     <title>Lambtown4</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+
+     <meta property="og:url"           content="http://localhost:3000" />
+     <meta property="og:type"          content="website" />
+     <meta property="og:title"         content="lambtown" />
+     <meta property="og:description"   content="Return the lambtown" />
+     <meta property="og:image"         content="https://images.pexels.com/photos/93012/pexels-photo-93012.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb" />
   </head>
 
   <body>
@@ -15,6 +21,25 @@
    <% else %>
      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
   <% end %>
+
+<!-- ## share button ## -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.8&appId=1616149465081513";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+<!-- ##             ## -->
+
+
+<%= render 'layouts/nav' %>
+
+  <div class="container">
     <%= yield %>
+  </div>
+
+
   </body>
 </html>

@@ -8,6 +8,8 @@ end
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem "bulma-rails", "~> 0.4.0"
+gem 'friendly_id', '~> 5.1.0' 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
