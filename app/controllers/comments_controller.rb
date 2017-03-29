@@ -24,17 +24,23 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
+      @comment = Comment.new(comment_params)
+      @comment.user_id = current_user.id
+      # add 13:42/29/03/17
+      @post = Post.friendly.find(params[:post_id])
+      #@comment.post_id = params[post_:id]  #change as below to @post.id
+      # add 13:41/29/03/17
+      @comment.post_id = @post.id
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+      respond_to do |format|
+        if @comment.save
+        #  format.html { redirect_to @comment, notice: 'Comment was successfully created.' } #change and delete as follow 13:49/29/03/17
+          format.html { redirect_to post_path(@comment.post_id), notice: 'Comment was successfully created.' }
+          format.json { render :show, status: :created, location: @comment }
+        else
+          format.html { render :new }
+          format.json { render json: @comment.errors, status: :unprocessable_entity }
+        end
     end
   end
 
